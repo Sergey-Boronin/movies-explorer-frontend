@@ -1,0 +1,14 @@
+.promo {
+    background: #F3C1F8 url('../../images/promo-bg.png') no-repeat center 82px;
+    padding: 184px 20px 224px;
+}
+
+.promo__title {
+    max-width: 738px;
+    margin: 0 auto;
+    font-size: 50px;
+    line-height: 116%;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: -0.04em;
+}
