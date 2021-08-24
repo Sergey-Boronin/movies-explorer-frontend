@@ -28,3 +28,8 @@ html {
     letter-spacing: -0.04em;
     border-bottom: 1px solid #000;
 } 
+
+.hover-effect:hover {
+  opacity: .8;
+  cursor: pointer;
+}
