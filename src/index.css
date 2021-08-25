@@ -10,9 +10,11 @@ html {
 
 .page {
     font-family: "Inter", "Arial", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.section {
+/* .section {
     max-width: 1280px;
     min-width: 320px;
     margin: 0 auto;
@@ -27,9 +29,9 @@ html {
     line-height: 27px;
     letter-spacing: -0.04em;
     border-bottom: 1px solid #000;
-} 
+}  */
 
-.hover-effect:hover {
+/* .hover-effect:hover {
   opacity: .8;
   cursor: pointer;
-}
+} */

@@ -1,22 +1,45 @@
-import React from "react"
-import './Header.css'
-import logo from '../../images/logo.svg'
+import React from 'react';
+import './Header.css';
+import logo from '../../images/header-logo.svg';
+import Navigation from '../Navigation/Navigation';
+import { Route, Switch, Link } from 'react-router-dom';
 
-function Header() {
-    return (
-        <header className="header">
-            <div className="header__wrapper section">
-                <nav class="navigation">
-                <a class="navigation__link navigation__link_type_logo" href="/"><img src="./images/logo.svg" alt="" class="logo" /></a>
-                    <div class="navigation__auth">
-                        <a href="#" class="navigation__link navigation__link_type_register">Регистрация</a>
-                        <a href="#" class="navigation__link navigation__link_type_login">Войти</a>
-                    </div>
-                </nav>
+export default function Header(props) {
+  return (
+    <header className='header'>
+        <Switch>
+          <Route exact path="/">
+            <div className='header__wrapper'>
+            <div className='header__container'>
+              <Link to="/"><img className='header__logo' src={logo} alt='Логотип проекта'></img></Link>
+              <Navigation /> 
+            </div>   
             </div>
-        </header>
-    )
-}
+          </Route>
 
+          <Route exact path="/profile">
+            <div className='header__container'>
+              <Link to="/"><img className='header__logo' src={logo} alt='Логотип проекта'></img></Link>
+              <Navigation /> 
+            </div>   
+          </Route> 
 
-export default Header;
+          <Route exact path="/movies">
+            <div className='header__container'>
+              <Link to="/"><img className='header__logo' src={logo} alt='Логотип проекта'></img></Link>
+              <Navigation /> 
+            </div>   
+          </Route>
+
+          <Route exact path="/saved-movies">
+            <div className='header__container'>
+              <Link to="/"><img className='header__logo' src={logo} alt='Логотип проекта'></img></Link>
+              <Navigation /> 
+            </div>   
+          </Route>   
+
+        </Switch>  
+      
+    </header>
+  )
+};

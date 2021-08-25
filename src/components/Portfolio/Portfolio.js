@@ -1,23 +1,36 @@
-import React from 'react'
-import './Portfolio.css'
+import React from 'react';
+import './Portfolio.css';
 
-function Portfolio() {
-    return(
-        <section className="portfolio section">
-                    <h2 className="portfolio__title">Портфолио</h2>
-                    <div className="portfolio__wrapper">
-                        <div className="portfolio__item">
-                            <a href="" className="portfolio__link">Статичный сайт</a>
-                        </div>
-                        <div className="portfolio__item">
-                            <a href="" className="portfolio__link">Адаптивный сайт</a>
-                        </div>
-                        <div className="portfolio__item">
-                            <a href="" className="portfolio__link">Одностраничное приложение</a>
-                        </div>
-                    </div>
-                </section>
-    )
-}
+export default function Portfolio(props) {
+  return (
+    <section className='portfolio'>
+      <h4 className='portfolio__title'>Портфолио</h4>
+      <ul className='portfolio__list'>
+        <li className='portfolio__item'>
+          <a
+            href='https://sergey-boronin.github.io/how-to-learn/'
+            target='_blank'
+            rel='noreferrer'
+            className='portfolio__link'>
+            Статичный сайт
+          </a>
 
-export default Portfolio;
+        </li>
+        <li className='portfolio__item'>
+          <a
+            href='https://sergey-boronin.github.io/russian-travel/'
+            target='_blank'
+            rel='noreferrer'
+            className='portfolio__link'>
+            Адаптивный сайт
+          </a>
+    
+        </li>
+        <li className='portfolio__item'>
+          <a href='https://github.com/Sergey-Boronin/react-mesto-api-full' target='_blank' rel='noreferrer' className='portfolio__link'>Одностраничное приложение
+          </a>
+        </li>
+      </ul>
+    </section>
+  )
+};

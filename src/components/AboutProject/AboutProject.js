@@ -1,10 +1,11 @@
-import React from 'react'
-import './Project.css'
+import React from 'react';
+import './AboutProject.css';
 
-function Project() {
-    return(
-        <section className="project section" id="project">
-            <h2 className="section__title">О проекте</h2>
+
+export default function AboutProject(props) {
+  return (
+    <section className="project" id="project">
+            <h2 className="project__title">О проекте</h2>
             <div className="project-wrapper">
                 <div className="project-article">
                     <p className="project-article__title">
@@ -28,7 +29,5 @@ function Project() {
                 <span className="stages__item">4 недели</span>
             </div>
     </section>
-    )
-}
-
-export default Project;
+  )
+};
