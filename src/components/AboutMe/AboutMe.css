@@ -129,8 +129,9 @@
     }
 
     .about-me__photo {
-      width: 292px;
-      height: 352px;
+      width: 90%;
+      height: 100%;
+      margin: 0 auto 40px;
     }
 
   }
