@@ -78,6 +78,7 @@ export const saveMovie = (data) => {
 };
 
 export const deleteSaveMovie = (movieId) => {
+  console.log(movieId)
   return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: "DELETE",
     headers: {
