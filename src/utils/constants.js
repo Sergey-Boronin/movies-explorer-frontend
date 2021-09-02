@@ -1,4 +1,4 @@
-const MAIN_URL = "api.boronin-diploma.nomoredomains.club";
+const MAIN_URL = "https://api.boronin-diploma.nomoredomains.club";
 // const localHost = "http://localhost:3000";
 const MOVIES_URL = "https://api.nomoreparties.co/beatfilm-movies";
 const SHORT_FILMS_DURATION = 40;
