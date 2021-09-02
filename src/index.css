@@ -1,16 +1,2 @@
-@import url('./vendor/normalize.css');
-@import url('./vendor/fonts/inter.css');
-
-html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-
-.page {
-    font-family: "Inter", "Arial", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
+@import url("./vendor/normalize.css");
+@import url("./vendor/fonts/fonts.css");

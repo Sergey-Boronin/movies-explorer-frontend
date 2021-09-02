@@ -1,1 +1,4 @@
-# Ссылка не макет - https://www.figma.com/file/RDDK3fGNwVMSjVUMKtHSC9/diploma-boronin?node-id=932%3A3320
+# Проект: Movies Explorer
+IP сервера 178.154.253.235
+Frontend https://boronin-diploma.nomoredomains.club
+
