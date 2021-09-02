@@ -60,7 +60,7 @@ export const saveMovie = (data) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    credentials: "same-origin",
+    credentials: "true",
     body: JSON.stringify({
       country: data.country,
       director: data.director,
