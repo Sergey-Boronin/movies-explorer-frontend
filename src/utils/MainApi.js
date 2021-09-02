@@ -1,137 +1,114 @@
-import { MAIN_URL } from './constants';
+import { BASE_URL, URL_NOMOREPATIES } from "./constants";
 
-class MainAPI {
-  constructor({ mainApiURL }) {
-    this._mainApiURL = mainApiURL;
+const checkAnswerCorrectness = (response) => {
+  if (response.ok) {
+    return response.json();
   }
 
-  _checkResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка ${res.status}`);
-  }
+  return Promise.reject(new Error(`Ошибка ${response.status}`));
+};
 
-  register(name, email, password) {
-    return fetch(`${this._mainApiURL}/signup`, {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    }).then(this._checkResponse);
-  }
-
-  login(email, password) {
-    return fetch(`${this._mainApiURL}/signin`, {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    }).then(this._checkResponse);
-  }
-
-  checkToken(token) {
-    return fetch(`${this._mainApiURL}/users/me`, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        }
-    }).then(this._checkResponse);
-}
-
-  getUserInfo() {
-    return fetch(`${this._mainApiURL}/users/me`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-      },
-    }).then(this._checkResponse);
-  }
-
-  editProfile(name, email) {
-    return fetch(`${this._mainApiURL}/users/me`, {
-      method: "PATCH",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-      }),
-    }).then(this._checkResponse);
-  }
-
-  getUsersMovies() {
-    return fetch(`${this._mainApiURL}/movies`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-      },
-    }).then(this._checkResponse);
-  }
-
-addMovie({
-  country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    nameRU,
-    nameEN,
-    thumbnail,
-    id
-}) {
-  return fetch(`${this._mainApiURL}/movies`, {
+export const register = (name, email, password) => {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({ name, email, password }),
+  }).then((response) => checkAnswerCorrectness(response));
+};
+
+export const authorize = (email, password) => {
+  return fetch(`${BASE_URL}/signin`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  }).then((response) => checkAnswerCorrectness(response));
+};
+
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((response) => checkAnswerCorrectness(response));
+};
+
+export const getSaveMovies = () =>
+  fetch(`${BASE_URL}/movies`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }).then((response) => checkAnswerCorrectness(response));
+
+export const saveMovie = (data) => {
+  const urlImg = `${URL_NOMOREPATIES}` + data.image?.url;
+  return fetch(`${BASE_URL}/movies`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    credentials: "include",
     body: JSON.stringify({
-      country: country || 'no country',
-        director,
-        duration,
-        year,
-        description,
-        image: `https://api.nomoreparties.co${image.url}`,
-        trailer: trailerLink,
-        nameRU: nameRU || 'no name',
-        nameEN: nameEN || 'no name',
-        thumbnail: `https://api.nomoreparties.co${image.url}`,
-        movieId: id,
+      country: data.country,
+      director: data.director,
+      duration: data.duration,
+      year: data.year,
+      description: data.description,
+      image: urlImg,
+      trailer: data.trailerLink,
+      thumbnail: urlImg,
+      movieId: data.id,
+      nameRU: data.nameRU,
+      nameEN: data.nameEN,
     }),
-  }).then(this._checkResponse);
-}
+  }).then((response) => checkAnswerCorrectness(response));
+};
 
-  deleteMovie(movieId) {
-    return fetch(`${this._mainApiURL}/movies/${movieId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    }).then(this._checkResponse);
-  }
-}
+export const deleteSaveMovie = (movieId) => {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-type": "application/json",
+    },
+  }).then((response) => checkAnswerCorrectness(response));
+};
 
-const mainApi = new MainAPI({
-  mainApiURL: MAIN_URL,
-});
+export const getUserInfo = () => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }).then((response) => checkAnswerCorrectness(response));
+};
 
-export default mainApi;
+export const editUserInfo = (data) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+    }),
+  }).then((response) => checkAnswerCorrectness(response));
+};

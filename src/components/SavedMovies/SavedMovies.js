@@ -1,51 +1,61 @@
-import React, {useState, useEffect} from "react";
-import SearchForm from "../Movies/SearchForm/SearchForm";
-import MoviesCardList from "../Movies/MoviesCardsList/MoviesCardsList";
-import { filterMovies } from "../../utils/utils";
-import "./SavedMovies.css";
+import './SavedMovies.css';
+import React, { useState, useEffect } from "react";
+import MoviesCardList from "./MoviesCardList";
+import SearchForm from "../SearchForm/SearchForm";
+import { DURATION_MOVIE } from "../../utils/constants";
 
-function SavedMovies({ moviesList, onDeleteMovie, isError }) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [shortFilms, setShortFilms] = useState("off");
-  const [filteredMovies, setFilteredMovies] = useState(moviesList);
-  const [isMovieNotFound, setIsMovieNotFound] = useState(false);
-
-  function handleSearchSubmit(value) {
-    setSearchQuery(value);
-    const resultList = filterMovies(moviesList, searchQuery, shortFilms);
-    setFilteredMovies(resultList);
-  }
-
-  function handleShortFilms(evt) {
-    setShortFilms(evt.target.value);
-    localStorage.setItem("shortFilms", evt.target.value);
-  }
+function SavedMovies({ toggleLikeHandler, movieAdded, savedMovies }) {
+  const [showFoundMovies, setShowFoundMovies] = useState([]);
+  const [preloader, setPreloader] = useState(false);
 
   useEffect(() => {
-    const arr = filterMovies(moviesList, searchQuery, shortFilms);
-    setFilteredMovies(arr);
-    if (searchQuery) {
-      arr.length === 0 ? setIsMovieNotFound(true) : setIsMovieNotFound(false);
-    }
-  }, [searchQuery, shortFilms, moviesList]);
+    setShowFoundMovies(savedMovies);
+  }, [savedMovies]);
+
+  const [filter, setfilter] = useState(false);
+  const filterMovies = (movies) =>
+    movies.filter((item) => item.duration < DURATION_MOVIE);
+
+  const onFilter = () => {
+    setfilter(!filter);
+  };
+
+  function handleSearchMovies(data) {
+    setPreloader(true);
+    const filteredArray = savedMovies.filter((obj) => {
+      return (
+        obj.description?.toLowerCase().includes(data.toLowerCase()) ||
+        obj.director?.toLowerCase().includes(data.toLowerCase()) ||
+        obj.nameEN?.toLowerCase().includes(data.toLowerCase()) ||
+        obj.nameRU?.toLowerCase().includes(data.toLowerCase())
+      );
+    });
+
+    setShowFoundMovies(filteredArray);
+
+    setTimeout(() => {
+      setPreloader(false);
+    }, 300);
+  }
 
   return (
-    <section className="movies__container">
-      <SearchForm
-        onSearchFormSubmit={handleSearchSubmit}
-        onCheckbox={handleShortFilms}
-        shortFilms={shortFilms}
-        savedMoviesPage={true}
-      />
-      <MoviesCardList
-        moviesList={filteredMovies}
-        savedMoviesPage={true}
-        onDeleteMovie={onDeleteMovie}
-        isListEmpty={isMovieNotFound}
-        isError={isError}
-      />
-    </section>
+    <>
+      <SearchForm onSearch={handleSearchMovies} onFilter={onFilter} />
+      <section className='movies'>
+        {savedMovies.length !== 0 || showFoundMovies.length !== 0 ? (
+          <MoviesCardList
+            movieAdded={movieAdded}
+            preloader={preloader}
+            showFoundMovies={
+              filter ? filterMovies(showFoundMovies) : showFoundMovies
+            }
+            toggleLikeHandler={toggleLikeHandler}
+          />
+        ) : (
+          <h3 className='text-nothing-found'>Ничего не найдено</h3>
+        )}
+      </section>
+    </>
   );
 }
-
 export default SavedMovies;

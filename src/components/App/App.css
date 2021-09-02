@@ -1,23 +1,8 @@
+@import url(../../vendor/normalize.css);
+@import url(../../fonts/inter/Inter_Web/inter.css);
+
 .page {
-  width: 100%;
+  max-width: 1280px;
   min-width: 320px;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0;
-  background-color: #fafafa;
-  font-family: "Inter", "Arial", sans-serif;
-  text-rendering: optimizeLegibility;
-}
-
-.app__link {
-  text-decoration: none;
-}
-
-.app__link:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-.app__link:visited {
-  text-decoration: none;
+  margin: auto;
 }

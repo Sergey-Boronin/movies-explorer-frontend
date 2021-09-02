@@ -1,63 +1,36 @@
+@import url(../../vendor/normalize.css);
+@import url(../../fonts/inter/Inter_Web/inter.css);
+
 .movies {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 35px 20px;
-  padding-top: 70px;
-  border-top: 1px solid #e8e8e8;
-}
-
-.movies__container {
-  width: calc(100% - 70px * 2);
-  margin: 0 auto;
-}
-
-.movies__links-container {
+  background-color: #fafafa;
   display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+.movies-loading {
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.movies__button-showmore {
-  width: 100%;
+.movies-btn {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 80px;
   height: 36px;
-  margin: 50px auto 80px;
   border: none;
+  background: #F4F4F4;
   border-radius: 6px;
-  background-color: #f4f4f4;
-  font-size: 12px;
-  line-height: 14.52px;
-  text-align: center;
-  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
 }
 
-@media screen and (max-width: 1023px) {
-  .movies__container {
-    width: calc(100% - 30px * 2);
-  }
-
-  .movies__link {
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-  }
-
-  .movies__link:hover {
-    text-decoration: underline;
-  }
-
-  .header__profile-button {
-    display: none;
-  }
-
-  .header__profile-button_burger {
-    display: flex;
-  }
+.text-nothing-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media screen and (max-width: 767px) {
-  .movies__container {
-    width: calc(100% - 10px * 2);
-  }
-}
+@import url(../../vendor/normalize.css);
+@import url(../../fonts/inter/Inter_Web/inter.css);

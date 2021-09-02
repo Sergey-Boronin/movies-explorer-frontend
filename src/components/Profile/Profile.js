@@ -1,122 +1,123 @@
-import "./Profile.css";
-import React, { useEffect, useState } from "react";
-import useFormValidation from "../../utils/useFormValidation.js";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import './Profile.css';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+// import arrow from "../../images/arrow.png";
 
-function Profile({ onUpdateUser, onSignOut }) {
+function Profile({ signOut, editUserInfo, errorProfile, preloader }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const {
-    values,
-    setValues,
-    errors,
-    isFormCorrect,
-    setIsFormCorrect,
-    handleChange,
-  } = useFormValidation();
+  const [name, setName] = useState(currentUser.name);
+  const [email, setEmail] = useState(currentUser.email);
+  const [nameError, setNameError] = useState("Имя не должен быть пустым");
+  const [emailError, setEmailError] = useState("Email не должен быть пустым");
 
-  const [isEditingAvailable, setIsEditingAvailable] = useState(false);
-
+  const [formValid, setFormValid] = useState(false);
   useEffect(() => {
-    setValues({
-      name: currentUser.name,
-      email: currentUser.email,
-    });
-  }, [setValues, currentUser]);
-
-  useEffect(() => {
-    if (
-      currentUser.name === values.name &&
-      currentUser.email === values.email
-    ) {
-      setIsFormCorrect(false);
+    if (nameError || emailError) {
+      setFormValid(false);
+    } else {
+      setFormValid(true);
     }
-  }, [currentUser, values, setIsFormCorrect]);
+  }, [nameError, emailError]);
 
-  function handleEditProfile() {
-    setIsEditingAvailable(true);
+  useEffect(() => {
+    if (!name) {
+      setNameError("Имя не должен быть пустым");
+    } else if (name.length < 2) {
+      setNameError("Имя не должно быть больше 2х букв");
+    } else {
+      setNameError("");
+    }
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (email === "") {
+      setEmailError("Email не должен быть пустым");
+    } else if (!re.test(String(email).toLowerCase())) {
+      setEmailError("Некорректный email, пример: text@mail.ru");
+    } else {
+      setEmailError("");
+    }
+  }, [name, email]);
+
+  const nameHandler = (event) => {
+    setName(event.target.value);
   };
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    onUpdateUser(values.name, values.email);
+  const emailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newArray = { name: name, email: email };
+    editUserInfo(newArray);
   };
 
   return (
-    <>
-      <div className="authorization">
-        <div className="authorization__container profile__container">
-          <h2 className="authorization__title profile__title">
-            {`Привет, ${currentUser.name}!`}
-          </h2>
-          <form
-            className="authorization__form"
-            name="profile"
-            method="POST"
-            noValidate
-            onSubmit={handleSubmit}
-          >
-            <div className="profile__input-container">
-              <p className="profile__input-name">Имя</p>
-              <input
-                className="authorization__input profile__input"
-                id="name"
-                name="name"
-                type="text"
-                value={values.name || ""}
-                minLength="2"
-                maxLength="30"
+    <form className = 'profile' onSubmit={handleSubmit} noValidate>
+      <h2 className = 'profile__title'>Привет, {currentUser.name}!</h2>
+      <div className = 'profile__container'>
+       <div className = 'profile__box'>
+         <p className = 'profile__name'>Имя</p>
+         <input className ='profile__input'
+                id='name-input'
+                type='name'
+                name='name'
+                value={name}
                 required
-                pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
-                onChange={handleChange}
-                disabled={!isEditingAvailable}
-              ></input>
-              <span id="name-error" className="profile__error-input">
-                {errors.name
-                  ? "Поле должно быть заполнено и содержать только буквы, пробел или дефис"
-                  : ""}
+                onChange={(event) => nameHandler(event)}
+         />
+       </div>
+       <div className = 'profile__line'></div>
+       {nameError && (
+              <span id='name-input-error' className={
+            nameError
+              ? "profile__error profile__error_active"
+              : "profile__error"
+          }>
+                {nameError}
               </span>
-            </div>
-            <div className="profile__input-container">
-              <p className="profile__input-name">E-mail</p>
-              <input
-                className="authorization__input profile__input"
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={values.email || ""}
-                onChange={handleChange}
-                disabled={!isEditingAvailable}
-              ></input>
-              <span id="email-error" className="profile__error-input">
-                {errors.email || ""}
-              </span>
-            </div>
-
-            {isEditingAvailable ? (
-              <button
-                className="authorization__button profile__button"
-                type="submit"
-                disabled={!isFormCorrect}
-              >
-                Сохранить
-              </button>
-            ) : (
-              <button
-                className="authorization__button profile__button"
-                type="button"
-                onClick={handleEditProfile}
-              >
-                Редактировать
-              </button>
             )}
-          </form>
-          <p className="app__link profile__link" onClick={onSignOut}>
-            Выйти из аккаунта
-          </p>
-        </div>
+       <div className = 'profile__box'>
+         <p className = 'profile__name'>E-mail</p>
+         <input className ='profile__input'
+                id='email-input'
+                type='email'
+                name='email'
+                value={email}
+                required
+                onChange={(event) => emailHandler(event)}
+         />
+       </div>
+       {emailError && (
+              <span id='email-input-error' className={
+            emailError
+              ? "profile__error profile__error_active"
+              : "profile__error"
+          }>
+                {emailError}
+              </span>
+            )}
       </div>
-    </>
+      <div className = 'profile__buttons'>
+        <button className = 'profile__edit-btn'  disabled={
+                (currentUser.name === name && currentUser.email === email) ||
+                !formValid
+              }
+              type='submit'
+              value='Редактировать'>Редактировать</button>
+        <Link to = 'signin' onClick={signOut} className = 'profile__exit-btn'>Выйти из аккаунта</Link>
+        {errorProfile && (
+            <span id='submit-error' className={
+            errorProfile
+              ? "profile__error profile__error_active"
+              : "profile__error"
+          }>
+              Ошибка редактирования
+            </span>
+          )}
+      </div>
+    </form>
   );
 }
 

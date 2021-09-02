@@ -1,30 +1,18 @@
-import { MOVIES_URL } from "./constants";
+import { URL_NOMOREPATIES } from "./constants";
 
-class MoviesAPI {
-  constructor({ moviesURL }) {
-    this._moviesURL = moviesURL;
+const checkAnswerCorrectness = (response) => {
+  if (response.ok) {
+    return response.json();
   }
 
-  _checkResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка ${res.status}`);
-  }
+  return Promise.reject(new Error(`Ошибка ${response.status}`));
+};
 
-  getInitialMovies() {
-    return fetch(`${this._moviesURL}`, {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(this._checkResponse);
-  }
-
-}
-
-const moviesApi = new MoviesAPI({
-  moviesURL: MOVIES_URL,
-});
-
-export default moviesApi;
+export const getMovies = () =>
+  fetch(`${URL_NOMOREPATIES}/beatfilm-movies`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((res) => checkAnswerCorrectness(res));

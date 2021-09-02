@@ -1,51 +1,55 @@
-import "./Footer.css";
+import './Footer.css';
+import logo from "../../images/logo.png";
+import React from "react";
+import { Link, Route, Switch } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__container">
-        <h2 className="footer__title">
-          Учебный проект Яндекс.Практикум х BeatFilm.
-        </h2>
-        <div className="footer__info">
-          <p className="footer__copyright">Семён Дягелец © 2021</p>
-          <nav className="footer__links">
-            <ul className="footer__links-list">
-              <li className="footer__item">
-                <a
-                  className="app__link footer__link"
-                  href="https://praktikum.yandex.ru/"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Яндекс.Практикум
-                </a>
-              </li>
-              <li className="footer__item">
-                <a
-                  className="app__link footer__link"
-                  href="https://github.com/semyon-dyagelets"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Github
-                </a>
-              </li>
-              <li className="footer__item">
-                <a
-                  className="app__link footer__link"
-                  href="https://github.com/semyon-dyagelets"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
-          </nav>
+    <Switch>
+      <Route exact path = '/'>
+        <div className = 'footer'>
+          <h2 className = 'footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
+          <div className = 'footer__container'>
+            <p className = 'footer__date'>&copy; 2021</p>
+            <div className = 'footer__links'>
+              <a href = '#' className = 'footer__link'>Яндекс.Практикум</a>
+              <a href = '#' className = 'footer__link'>Github</a>
+              <a href = '#' className = 'footer__link'>Facebook</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </footer>
+      </Route>
+      <Route path = '/movies'>
+        <div className = 'footer'>
+          <h2 className = 'footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
+          <div className = 'footer__container'>
+            <p className = 'footer__date'>&copy; 2021</p>
+            <div className = 'footer__links'>
+              <a href = '#' className = 'footer__link'>Яндекс.Практикум</a>
+              <a href = '#' className = 'footer__link'>Github</a>
+              <a href = '#' className = 'footer__link'>Facebook</a>
+            </div>
+          </div>
+        </div>
+      </Route>
+      <Route path = '/saved-movies'>
+        <div className = 'footer'>
+          <h2 className = 'footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
+          <div className = 'footer__container'>
+            <p className = 'footer__date'>&copy; 2021</p>
+            <div className = 'footer__links'>
+              <a href = '#' className = 'footer__link'>Яндекс.Практикум</a>
+              <a href = '#' className = 'footer__link'>Github</a>
+              <a href = '#' className = 'footer__link'>Facebook</a>
+            </div>
+          </div>
+        </div>
+      </Route>
+      <Route path = '/signin'>
+      
+      </Route>
+    </Switch>
+    
   );
 }
 
