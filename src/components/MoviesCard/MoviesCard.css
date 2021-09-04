@@ -84,11 +84,22 @@
   margin-bottom: 18px;
   border: none;
   background: transparent url('../../images/save-button.svg') no-repeat;
+  cursor: pointer;
+  transition: opacity ease-in-out .3s;
+}
 
+.movies-card__button:hover {
+  opacity: .6;
 }
 
 .movie-btn_active {
   background: transparent url('../../images/save-button-active.svg') no-repeat;
+  cursor: pointer;
+  transition: opacity ease-in-out .3s;
+}
+
+.movie-btn_active:hover {
+  opacity: .6;
 }
 
 .movies-card__button-saved {
