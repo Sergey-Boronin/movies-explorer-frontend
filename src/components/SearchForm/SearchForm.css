@@ -76,7 +76,7 @@
   transition: opacity ease-in-out .3s;
 }
 
-.search__form-button {
+.search__form-button:hover {
   opacity: .6;
 }
 

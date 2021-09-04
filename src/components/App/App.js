@@ -111,6 +111,7 @@ function App() {
           setCurrentUser(userInf);
           setMovies(allMovies);
           const currentUserSavedMovies = saveMovies.filter((m) => {
+            // eslint-disable-next-line eqeqeq
             return m.owner == currentUser._id;
           });
           setSavedMovies(currentUserSavedMovies);
