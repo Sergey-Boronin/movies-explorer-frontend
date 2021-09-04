@@ -1,1 +1,2 @@
-### domen https://api.boronin-diploma.nomoredomains.club
+### domen https://boronin-diploma.nomoredomains.club
+### ip - 178.154.253.235

@@ -8,11 +8,11 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  background-color: #DDDEE3;
+  background-color: #F3C1F8;
 }
 
 .header__container {
-  width: 89.06%;
+  max-width: 1280px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,7 +27,7 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    background-color: #DDDEE3;
+    background-color: #F3C1F8;
   }
 
   .header__container {
@@ -44,7 +44,6 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    background-color: #DDDEE3;
   }
 
   .header__container {
@@ -75,7 +74,7 @@
   font-size: 12px;
   line-height: 16px;
   color: #ffffff;
-  background-color: #3456F3;
+  background-color: #000;
   border-radius: 3px;
   border: none;
   margin: 0%;
@@ -102,7 +101,6 @@
   .header__popup-btn {
     display: flex;
     border: none;
-    background-color: #fafafa;
   }
 }
 
@@ -113,16 +111,10 @@
 @media screen and (max-width: 768px){
   .header__popup-menu {
     display: flex;
-    background-color: #fafafa;
-  }
-
-  .header__popup-menu_logeddin {
-    background-color: #DDDEE3;
   }
 
   .header__popup-close {
     display: flex;
-    background-color: #fafafa;
   }
 }
 
@@ -137,7 +129,7 @@
   margin: 0%;
   padding: 0%;
   border: none;
-  background-color: #DDDEE3;
+  background-color: #F3C1F8;
   cursor: pointer;
 }
 
@@ -188,7 +180,6 @@
   justify-content: space-between;
   align-items: center;
   height: 74px;
-  background-color: #FAFAFA;
 }
 
 @media screen and (max-width: 768px){

@@ -1,5 +1,6 @@
 import React from "react";
 import Promo from '../Promo/Promo';
+import NavTab from '../NavTab/NavTab';
 import "./Main.css";
 import AboutProject from '../AboutProject/AboutProject';
 import Techs from '../Techs/Techs';
@@ -10,6 +11,7 @@ function Main() {
   return (
     <div className = 'main'>
       <Promo />
+      <NavTab/>
       <AboutProject />
       <Techs />
       <AboutMe />

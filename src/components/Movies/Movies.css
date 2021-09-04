@@ -2,9 +2,9 @@
 @import url(../../fonts/inter/Inter_Web/inter.css);
 
 .movies {
-  background-color: #fafafa;
   display: flex;
   flex-direction: column;
+  max-width: 1280px;
 }
 
 .movies-loading {
@@ -23,7 +23,7 @@
   border-radius: 6px;
   align-items: center;
   justify-content: center;
-  width: 25%;
+  width: 89%;
 }
 
 .text-nothing-found {

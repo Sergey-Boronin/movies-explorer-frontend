@@ -3,7 +3,7 @@ import React from "react";
 
 function Techs() {
   return (
-    <div className = 'techs'>
+    <section className = 'techs' id="techs">
       <h2 className = 'techs__title'>Технологии</h2>
       <div className = 'techs__title-line'></div>
       <div className = 'techs__table'>
@@ -33,7 +33,7 @@ function Techs() {
           <p className = 'techs__lang'>mongoDB</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

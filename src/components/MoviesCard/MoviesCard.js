@@ -19,19 +19,17 @@ function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
   return (
     <article className='movies-card'>
     <div className = 'movies-card__container'>
-    <div className='movies-card__title-box'>
-        <h2 className='movies-card__title'>{card.nameRU}</h2>
-        <p className='movies-card__time'>{timeHandler(card.duration)}</p>
-        
-      </div>
-      <a href={card.trailerLink} rel='noreferrer' target='_blank'>
+
+      <a className="movies-card__link" href={card.trailerLink} rel='noreferrer' target='_blank'>
         <img
           className='movies-card__image'
           src={`${URL_NOMOREPATIES}` + card.image.url}
           alt='Фото заставка фильма'
         />
       </a>
-      <button
+      <div className='movies-card__title-box'>
+        <h2 className='movies-card__title'>{card.nameRU}</h2>
+        <button
           onClick={deleteSaveClick}
           className={
             added
@@ -39,7 +37,11 @@ function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
               : "movies-card__button"
           }
           type='button'
-        >{added ? '✓' : 'Сохранить'}</button>
+        ></button>
+        
+        
+      </div>
+      <p className='movies-card__time'>{timeHandler(card.duration)}</p>
     </div>
       
     </article>

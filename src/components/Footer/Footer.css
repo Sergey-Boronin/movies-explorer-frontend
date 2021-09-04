@@ -2,7 +2,7 @@
 @import url(../../fonts/inter/Inter_Web/inter.css);
 
 .footer {
-  background-color: #f8f8f8;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -2,7 +2,7 @@
 @import url(../../fonts/inter/Inter_Web/inter.css);
 
 .portfolio {
-  background-color: #FAFAFA;
+  background-color: #fff;
   max-width: 1280px;
   margin: auto;
 }
@@ -30,6 +30,15 @@
   mix-blend-mode: normal;
   margin: auto;
   padding: 0%;
+}
+
+.portfolio__box-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #000;
 }
 
 @media screen and (max-width: 768px){
@@ -90,14 +99,15 @@
 }
 
 .portfolio__box-arrow {
-  width: 29px;
-  height: 29px;
+  /* width: 29px;
+  height: 29px; */
+  object-fit: contain;
 }
 
 @media screen and (max-width: 425px){
   .portfolio__box-arrow {
-    width: 100%;
-    height: 21px;
+    /* width: 100%;
+    height: 21px; */
     justify-content: center;
     align-items: center;
   }

@@ -9,16 +9,25 @@ function Portfolio() {
 
       <div className = 'portfolio__container'>
         <div className = 'portfolio__box'>
+          
+          <a href = 'https://sergey-boronin.github.io/how-to-learn/' className = 'portfolio__box-link' target='_blank' rel="noreferrer">
           <p className = 'portfolio__box-title'>Статичный сайт</p>
-          <a href = '#' className = 'portfolio__box-link'><img src = { arrow } alt = 'arrow' className = 'portfolio__box-arrow' /></a>
+          <img src = { arrow } alt = 'arrow' className = 'portfolio__box-arrow' />
+          </a>
         </div>
         <div className = 'portfolio__box'>
+          
+          <a href = 'https://sergey-boronin.github.io/russian-travel/' className = 'portfolio__box-link' target='_blank' rel="noreferrer">
           <p className = 'portfolio__box-title'>Адаптивный сайт</p>
-          <a href = '#' className = 'portfolio__box-link'><img src = { arrow } alt = 'arrow' className = 'portfolio__box-arrow' /></a> 
+          <img src = { arrow } alt = 'arrow' className = 'portfolio__box-arrow' />
+          </a> 
         </div>
         <div className = 'portfolio__box'>
+          
+          <a href = 'https://github.com/Sergey-Boronin/react-mesto-api-full' className = 'portfolio__box-link' target='_blank' rel="noreferrer">
           <p className = 'portfolio__box-title'>Одностраничное приложение</p>
-          <a href = '#' className = 'portfolio__box-link'><img src = { arrow } alt = 'arrow' className = 'portfolio__box-arrow' /></a>
+          <img src = { arrow } alt = 'arrow' className = 'portfolio__box-arrow' />
+          </a>
         </div>
       </div>
     </div>

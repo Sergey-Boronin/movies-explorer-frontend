@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from "../../images/logo.png";
+import logo from "../../images/logo.svg";
 import profile from '../../images/profile.png'
 import openPopup from '../../images/openPopup.svg';
 import BurgerMenu from '../BurgerMenu/BurgerMenu.js';

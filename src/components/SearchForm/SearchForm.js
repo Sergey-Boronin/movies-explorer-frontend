@@ -22,9 +22,12 @@ function SearchForm({ onSearch, onFilter }) {
   return (
     <div className = 'search'>
       <form className = 'search__form' noValidate onSubmit={handleSubmit}>
-        <input className = 'search__form-input' required onChange={handleInput} placeholder = 'Фильмы' />
-        
-        <button className = 'search__form-button'>Найти</button>
+      
+        <div className="search__form-wrapper">
+          <input className = 'search__form-input' required onChange={handleInput} placeholder = 'Фильмы' />
+          
+          <button className = 'search__form-button'>Найти</button>
+        </div>
       </form>
       {error && (
         <span id='input-error' className={

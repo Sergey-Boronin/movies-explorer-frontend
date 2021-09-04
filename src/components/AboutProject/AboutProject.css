@@ -2,10 +2,11 @@
 @import url(../../fonts/inter/Inter_Web/inter.css);
 
 .about {
-  background-color: #FAFAFA;
+  background-color: #fff;
   display: flex;
-  width: 100%;
+  max-width: 1280px;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 768px){
